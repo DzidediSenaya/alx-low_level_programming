@@ -1,7 +1,7 @@
 #include <stdio.h>
 /**
  * main - prints byte sizes of data types
- * Return 0 (Success)
+ * Return:Always 0
  */
 int main(void)
 {
