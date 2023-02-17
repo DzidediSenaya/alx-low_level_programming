@@ -1,7 +1,7 @@
 #include <stdio.h>
 /**
  * main - Prints out string using puts function.
- * Return: 0 if always.
+ * Return: 0 always.
  */
 int main(void)
 {
