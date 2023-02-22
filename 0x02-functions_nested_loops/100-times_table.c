@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * print_times_table - Prints the times table starting with 0
- * @n: The value of the times table to be printed.
+ *print_times_table - print time table.
+ * @n: integer
  *Return:void
  */
 void print_times_table(int n)
@@ -24,7 +24,7 @@ void print_times_table(int n)
 					_putchar(' ');
 					_putchar(' ');
 					_putchar(' ');
-					_putchar('0' + k);
+					_putchar('0' + c);
 				}
 				else if (c < 100)
 				{
