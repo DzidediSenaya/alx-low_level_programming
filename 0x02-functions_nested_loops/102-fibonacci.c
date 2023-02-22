@@ -16,7 +16,7 @@ int main(void)
 	printf("%ld, ", b);
 	for (d = 3; d < 50; d++)
 	{
-		printf("%ld, ", s);
+		printf("%ld, ", c);
 		a = b;
 		b = c;
 		c = a + b;
