@@ -7,22 +7,21 @@
   */
 int main(void)
 {
-	int a;
-	unsigned long b = 0, b = 1, sum;
+	long int a, b, c, d;
 
-	for (a = 0; a < 50; a++)
+	a = 1;
+	b = 2;
+	c = 3;
+	printf("%ld, ", a);
+	printf("%ld, ", b);
+	for (d = 3; d < 50; d++)
 	{
-		sum = b + c;
-		printf("%lu", sum);
-
-		b = b;
-		c = sum;
-
-		if (a == 49)
-			printf("\n");
-		else
-			printf(", ");
+		printf("%ld, ", s);
+		a = b;
+		b = c;
+		c = a + b;
 	}
+	printf("%ld\n", c);
 
 	return (0);
 }
