@@ -3,29 +3,26 @@
 /**
   * main - Prints the first 50 fibonacci numbers
   *
-  * Return: Nothing!
+  * Return: Always 0
   */
 int main(void)
 {
-	int a = 0;
-	unsigned long b = 1, c = 2;
+	int a;
+	unsigned long b = 0, b = 1, sum;
 
-	while (a < 50)
+	for (a = 0; a < 50; a++)
 	{
-		if (a == 0)
-			printf("%ld", b);
-		else if (a == 1)
-			printf(", %ld", c);
-		else
-		{
-			a += b;
-			b = c - b;
-			printf(", %ld", c);
-		}
+		sum = b + c;
+		printf("%lu", sum);
 
-		++a;
+		b = b;
+		c = sum;
+
+		if (a == 49)
+			printf("\n");
+		else
+			printf(", ");
 	}
 
-	printf("\n");
 	return (0);
 }
