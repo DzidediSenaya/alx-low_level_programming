@@ -9,17 +9,31 @@
 
 void print_number(int n)
 {
-	if (n < 0)
+	long e, num, b, c, exp;
+
+	num = n;
+	exp = e =  1;
+
+	if (num < 0)
 	{
+		num *= -1;
 		_putchar('-');
-		print_unsigned_int(-(unsigned int)n);
 	}
-	else
-		print_unsigned_int(n);
-	
-	else if (n / 10 != 0)
+
+	c = num;
+	while (c >= 10)
 	{
-		print_unsigned_int(n / 10);
+		e++;
+		c /= 10;
 	}
-	_putchar((n % 10) + '0');
+
+	for (b = 1; b < e; b++)
+		exp *= 10;
+
+	while (exp > 1)
+	{
+		_putchar((num / exp) % 10 + '0');
+		exp /= 10;
+	}
+	_putchar(num % 10 + '0');
 }
