@@ -1,4 +1,3 @@
-#include "main.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -19,15 +18,15 @@ int find_len(char *str)
 }
 
 /**
- * create_array - Creates an array of chars and initializes it with
- * the character 'i'. Adds a terminating null byte.
+ * create_anarray - Creates an array of chars and initializes it with
+ * the character 'x'. Adds a terminating null byte.
  * @size: The size of the array to be initialized.
- * If there is insufficient space, the function exits
- * with a status of 98
+ * Note: If there is insufficient space, the
+ * function exits with a status of 98.
  * Return: A pointer to the array.
  */
 
-char *create_array(int size)
+char *create_anarray(int size)
 {
 	char *array;
 	int index;
@@ -38,13 +37,12 @@ char *create_array(int size)
 		exit(98);
 
 	for (index = 0; index < (size - 1); index++)
-		array[index] = 'i';
+		array[index] = 'x';
 
 	array[index] = '\0';
 
 	return (array);
 }
-
 
 /**
  * leading_zeroes - Iterates through a string of numbers containing
@@ -62,14 +60,14 @@ char *leading_zeroes(char *str)
 }
 
 /**
- * convert_digit - Converts a digit character to a corresponding int.
+ * get_digit - Converts a digit character to a corresponding int.
  * @c: The character to be converted.
- * If c is a non-digit, the function
+ * Note: If c is a non-digit, the function
  * exits with a status of 98.
  * Return: The converted int.
  */
 
-int convert_digit(char c)
+int get_digit(char c)
 {
 	int digit = c - '0';
 
@@ -82,24 +80,22 @@ int convert_digit(char c)
 	return (digit);
 }
 
-
 /**
- * str_mul - Multiplies a string of numbers by a single digit.
+ * get_prod - Multiplies a string of numbers by a single digit.
  * @prod: The buffer to store the result.
- * @mul: The string of numbers.
+ * @mult: The string of numbers.
  * @digit: The single digit.
  * @zeroes: The necessary number of leading zeroes.
- * If mul contains a non-digit, the function
+ * Note: If mult contains a non-digit, the function
  * exits with a status value of 98.
- * Return: nothing
  */
 
-void str_mul(char *prod, char *mul, int digit, int zeroes)
+void get_prod(char *prod, char *mult, int digit, int zeroes)
 {
-	int len_mul, num, tens = 0;
+	int mult_len, num, tens = 0;
 
-	len_mul = find_len(mul) - 1;
-	mul += len_mul;
+	mult_len = find_len(mult) - 1;
+	mult += mult_len;
 
 	while (*prod)
 	{
@@ -115,15 +111,15 @@ void str_mul(char *prod, char *mul, int digit, int zeroes)
 		prod--;
 	}
 
-	for (; len_mul >= 0; len_mul--, mul--, prod--)
+	for (; mult_len >= 0; mult_len--, mult--, prod--)
 	{
-		if (*mul < '0' || *mul > '9')
+		if (*mult < '0' || *mult > '9')
 		{
 			printf("Error\n");
 			exit(98);
 		}
 
-		num = (*mul - '0') * digit;
+		num = (*mult - '0') * digit;
 		num += tens;
 		*prod = (num % 10) + '0';
 		tens = num / 10;
@@ -132,7 +128,6 @@ void str_mul(char *prod, char *mul, int digit, int zeroes)
 	if (tens)
 		*prod = (tens % 10) + '0';
 }
-
 
 /**
  * add_nums - Adds the numbers stored in two strings.
@@ -181,7 +176,7 @@ void add_nums(char *final_prod, char *next_prod, int next_len)
  * main - Multiplies two positive numbers.
  * @argv: The number of arguments passed to the program.
  * @argc: An array of pointers to the arguments.
- * Description: If the number of arguments is incorrect or one number
+ * Note: If the number of arguments is incorrect or one number
  * contains non-digits, the function exits with a status of 98.
  * Return: Always 0.
  */
@@ -208,13 +203,13 @@ int main(int argc, char *argv[])
 	}
 
 	size = find_len(argv[1]) + find_len(argv[2]);
-	final_prod = create_array(size + 1);
-	next_prod = create_array(size + 1);
+	final_prod = create_anarray(size + 1);
+	next_prod = create_anarray(size + 1);
 
 	for (index = find_len(argv[2]) - 1; index >= 0; index--)
 	{
-		digit = convert_digit(*(argv[2] + index));
-		str_mul(next_prod, argv[1], digit, zeroes++);
+		digit = get_digit(*(argv[2] + index));
+		get_prod(next_prod, argv[1], digit, zeroes++);
 		add_nums(final_prod, next_prod, size - 1);
 	}
 	for (index = 0; final_prod[index]; index++)
