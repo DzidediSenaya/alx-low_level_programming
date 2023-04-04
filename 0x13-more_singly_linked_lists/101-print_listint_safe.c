@@ -10,19 +10,19 @@
 size_t print_listint_safe(const listint_t *head)
 {
 size_t count = 0;
-const listint_t *current = head;
-const listint_t *next = NULL;
+const listint_t *current = head, *next = NULL;
 
-while (current != NULL)
+while (current && count < 1024)
 {
-count++;
-printf("[%p] %d\n", (void *)current, current->n);
+count++, printf("[%p] %d\n", (void *)current, current->n);
 next = current->next;
+
 if (next >= current)
 {
 printf("-> [%p] %d\n", (void *)next, next->n);
-exit(98);
+break;
 }
+
 current = next;
 }
 
