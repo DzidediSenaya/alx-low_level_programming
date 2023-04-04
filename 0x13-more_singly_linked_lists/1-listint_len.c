@@ -7,15 +7,17 @@
  * Return: The number of nodes in the singly linked  list
  */
 
+
 size_t listint_len(const listint_t *h)
 {
-	size_t ctr = 0;
+	size_t len = 0;
 
-	while (h != NULL
-			{ctr++;
-			h = h->next;
-			}
+	while (h != NULL)
+	{
+		len++;
+		h = h->next;
+	}
 
-			return (ctr);
+	return (len);
 }
 
