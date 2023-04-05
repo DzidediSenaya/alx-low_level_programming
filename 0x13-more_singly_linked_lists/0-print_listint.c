@@ -19,3 +19,4 @@ h = h->next;
 
 return (node_total);
 }
+

@@ -20,18 +20,20 @@ size_t free_listint_safe(listint_t **head)
 		current = *head;
 		*head = (*head)->next;
 		temp = *head;
-		while (temp != NULL && temp < current)
+		while (temp != NULL && temp->next != current)
 		{
 			count++;
 			temp = temp->next;
 		}
-		free(current);
-		if (current == temp)
+		if (temp != NULL)
 		{
 			*head = NULL;
 			count++;
 			break;
 		}
+		free(current);
+		temp = NULL;
 	}
 	return (count);
 }
+
