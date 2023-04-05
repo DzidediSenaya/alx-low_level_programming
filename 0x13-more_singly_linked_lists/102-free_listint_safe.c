@@ -1,39 +1,48 @@
 #include "lists.h"
 
 /**
- * free_listint_safe - frees a listint_t list and sets the head to NULL
- * @head: pointer to the pointer of the list
- * Return: number of nodes freed
+ * free_listint_safe - frees a linked list
+ * @h: pointer to the pointer of the first node in the linked list
+ *
+ * This function frees a linked list pointed to by 'h', safely handling
+ * cases where the list contains loops. It iterates through the list
+ * and frees each node, updating the 'next' pointers to break the loops
+ * before freeing the memory. The 'h' pointer is set to NULL after freeing
+ * all the nodes.
+ *
+ * Return: number of elements in the freed list
  */
 
-size_t free_listint_safe(listint_t **head)
+size_t free_listint_safe(listint_t **h)
 {
-	size_t count = 0;
-	listint_t *temp, *current;
+	size_t len = 0;
+	int diff;
+	listint_t *temp;
 
-	if (head == NULL || *head == NULL)
+	if (!h || !*h)
 		return (0);
 
-	while (*head != NULL)
+	while (*h)
 	{
-		count++;
-		current = *head;
-		*head = (*head)->next;
-		temp = *head;
-		while (temp != NULL && temp->next != current)
+		diff = *h - (*h)->next;
+		if (diff > 0)
 		{
-			count++;
-			temp = temp->next;
+			temp = (*h)->next;
+			free(*h);
+			*h = temp;
+			len++;
 		}
-		if (temp != NULL)
+		else
 		{
-			*head = NULL;
-			count++;
+			free(*h);
+			*h = NULL;
+			len++;
 			break;
 		}
-		free(current);
-		temp = NULL;
 	}
-	return (count);
+
+	*h = NULL;
+
+	return (len);
 }
 
