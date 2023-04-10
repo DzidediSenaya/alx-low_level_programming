@@ -15,7 +15,6 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 unsigned long int xor_result = n ^ m;
 /* Initialize count variable to 0 to count the number of flipped bits */
 unsigned int count = 0;
-    
 /* Loop over the XOR result until all flipped bits are counted */
 while (xor_result)
 {
@@ -28,7 +27,6 @@ count++;
 /* Shift the XOR result right by 1 bit to check the next bit */
 xor_result >>= 1;
 }
-    
 /* Return the total count of flipped bits */
 return (count);
 }
