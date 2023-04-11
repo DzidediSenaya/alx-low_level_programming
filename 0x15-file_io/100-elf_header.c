@@ -69,11 +69,13 @@ void check_elf(unsigned char *e_ident) {
 }
 
 /* Function to print the magic numbers of the given ELF file*/
-void display_magic(unsigned char *e_ident) {
+void display_magic(unsigned char *e_ident) 
+{
+int i;
+
     printf("  Magic:   ");
     
-int i;
-for (int i = 0; i < EI_NIDENT; i++) {
+for (i = 0; i < EI_NIDENT; i++) {
         printf("%02x ", e_ident[i]);
     }
     printf("\n");
