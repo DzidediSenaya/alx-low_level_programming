@@ -5,6 +5,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <elf.h>
+#include <string.h>
 
 /**
  * display_error - display an error message and exit the program
@@ -22,8 +23,10 @@ void display_error(char *message)
  */
 void display_elf_header(Elf64_Ehdr *header)
 {
+int i;
     printf("  Magic:   ");
-    for (int i = 0; i < EI_NIDENT; i++)
+
+for (i = 0; i < EI_NIDENT; i++)
         printf("%02x ", header->e_ident[i]);
     printf("\n");
 
@@ -76,7 +79,9 @@ void display_elf_header(Elf64_Ehdr *header)
 
 int main(int argc, char **argv)
 {
-    int fd;
+int fd;
+int i;
+
     Elf64_Ehdr header;
 
     if (argc != 2)
@@ -93,7 +98,7 @@ int main(int argc, char **argv)
         display_error("Not an ELF file");
 
     printf("Magic:   ");
-    for (int i = 0; i < EI_NIDENT; i++)
+    for (i = 0; i < EI_NIDENT; i++)
         printf("%02x ", header.e_ident[i]);
     printf("\n");
 
