@@ -39,23 +39,3 @@ close(fd);
 return (0);
 }
 
-#include <stdio.h>
-
-int print_elf(void) {
-    int i;
-    char magic[] = {0x7f, 0x45, 0x4c, 0x46, 0x02, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-    printf("Magic:   ");
-    for (i = 0; i < 16; i++) {
-        printf("%02x ", magic[i]);
-    }
-    printf("\n");
-    printf("Class:                             ELF64\n");
-    printf("Data:                              2's complement, little endian\n");
-    printf("Version:                           1 (current)\n");
-    printf("OS/ABI:                            UNIX - System V\n");
-    printf("ABI Version:                       0\n");
-    printf("Type:                              EXEC (Executable file)\n");
-    printf("Entry point address:               0x400600\n");
-    return 0;
-}
-
