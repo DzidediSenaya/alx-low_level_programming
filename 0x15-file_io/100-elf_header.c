@@ -56,9 +56,19 @@ if (fd == -1)
 display_error("Error opening file");
 
 /*read ELF header and display information */
+if (read(fd, e_ident, EI_NIDENT) != EI_NIDENT)
+        display_error("Error reading ELF header");
 
+    check_elf(e_ident);
+    display_magic(e_ident);
+    display_class(e_ident);
+    display_data(e_ident);
+    display_version(e_ident);
+    display_osabi(e_ident);
+    display_abi(e_ident);
 close(fd);
 return (0);
+ 
 }
 /* Function to check if the given file is an ELF file*/
 void check_elf(unsigned char *e_ident) {
