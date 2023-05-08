@@ -16,7 +16,7 @@ void display_osabi(unsigned char *e_ident);
 void display_abi(unsigned char *e_ident);
 void display_type(unsigned int e_type, unsigned char *e_ident);
 void entry_point_address(unsigned long int e_entry, unsigned char *e_ident);
-void exit_elf(int elf);
+void exit_elf(int fd);
 
 /**
  * main - Displays the information in the
@@ -291,11 +291,11 @@ void entry_point_address(unsigned long int e_entry, unsigned char *e_ident)
 
 /**
  * exit_elf - exits with status code 98 if not ELF
- * @elf: The file descriptor of the ELF file.
+ * @fd:ELF file descriptor
  */
-void exit_elf(int elf)
+void exit_elf(int fd)
 {
-	if (close(elf) == -1)
+	if (close(fd) == -1)
 	{
 		dprintf(STDERR_FILENO,
 			"Error: Can't close fd %d\n", elf);
