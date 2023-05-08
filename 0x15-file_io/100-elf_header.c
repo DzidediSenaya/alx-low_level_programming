@@ -7,14 +7,25 @@
 #include <unistd.h>
 
 
+void elf_check(unsigned char *e_ident);
+void print_magic(unsigned char *e_ident);
+void print_class(unsigned char *e_ident);
+void print_data(unsigned char *e_ident);
+void print_version(unsigned char *e_ident);
+void print_osabi(unsigned char *e_ident);
+void print_abi(unsigned char *e_ident);
+void print_type(unsigned int e_type, unsigned char *e_ident);
+void entry_point_address(unsigned long int e_entry, unsigned char *e_ident);
+void exit_elf(int elf);
+
 /**
  * main - Displays the information contained in the
  * ELF header at the start of an ELF file.
- * @argc: The number of arguments
- * @argv: An array of pointers to the arguments
+ * @argv : arguments passed
+ * @argc : unused int
  * Return: 0 on success
  */
-int main(int argc, char *argv[])
+int main(int __attribute__((__unused__)) argc, char *argv[])
 {
 	Elf64_Ehdr *header;
 	int o, r;
@@ -28,7 +39,7 @@ int main(int argc, char *argv[])
 	header = malloc(sizeof(Elf64_Ehdr));
 	if (header == NULL)
 	{
-		close_elf(o);
+		exit_elf(o);
 		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
 	}
@@ -36,12 +47,12 @@ int main(int argc, char *argv[])
 	if (r == -1)
 	{
 		free(header);
-		close_elf(o);
+		exit_elf(o);
 		dprintf(STDERR_FILENO, "Error: `%s`: No such file\n", argv[1]);
 		exit(98);
 	}
 
-	check_elf(header->e_ident);
+	elf_check(header->e_ident);
 	printf("ELF Header:\n");
 	print_magic(header->e_ident);
 	print_class(header->e_ident);
@@ -50,10 +61,10 @@ int main(int argc, char *argv[])
 	print_osabi(header->e_ident);
 	print_abi(header->e_ident);
 	print_type(header->e_type, header->e_ident);
-	print_entry(header->e_entry, header->e_ident);
+	entry_point_address(header->e_entry, header->e_ident);
 
 	free(header);
-	close_elf(o);
+	exit_elf(o);
 	return (0);
 }
 /**
@@ -283,7 +294,7 @@ void entry_point_address(unsigned long int e_entry, unsigned char *e_ident)
  * exit_elf - exits with status code 98 if not ELF
  * @elf: The file descriptor of the ELF file.
  */
-void close_elf(int elf)
+void exit_elf(int elf)
 {
 	if (close(elf) == -1)
 	{
@@ -292,6 +303,4 @@ void close_elf(int elf)
 		exit(98);
 	}
 }
-
-
 
