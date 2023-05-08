@@ -15,7 +15,7 @@ void display_version(unsigned char *e_ident);
 void display_osabi(unsigned char *e_ident);
 void display_abi(unsigned char *e_ident);
 void display_type(unsigned int e_type, unsigned char *e_ident);
-void display_point_address(unsigned long int e_entry, unsigned char *e_ident);
+void entry_point_address(unsigned long int e_entry, unsigned char *e_ident);
 void exit_elf(int elf);
 
 /**
