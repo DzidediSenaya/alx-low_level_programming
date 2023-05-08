@@ -8,18 +8,18 @@
 
 
 void elf_check(unsigned char *e_ident);
-void print_magic(unsigned char *e_ident);
-void print_class(unsigned char *e_ident);
-void print_data(unsigned char *e_ident);
-void print_version(unsigned char *e_ident);
-void print_osabi(unsigned char *e_ident);
-void print_abi(unsigned char *e_ident);
-void print_type(unsigned int e_type, unsigned char *e_ident);
-void entry_point_address(unsigned long int e_entry, unsigned char *e_ident);
+void display_magic(unsigned char *e_ident);
+void display_class(unsigned char *e_ident);
+void display_data(unsigned char *e_ident);
+void display_version(unsigned char *e_ident);
+void display_osabi(unsigned char *e_ident);
+void display_abi(unsigned char *e_ident);
+void display_type(unsigned int e_type, unsigned char *e_ident);
+void display_point_address(unsigned long int e_entry, unsigned char *e_ident);
 void exit_elf(int elf);
 
 /**
- * main - Displays the information contained in the
+ * main - Displays the information in the
  * ELF header at the start of an ELF file.
  * @argv : arguments passed
  * @argc : unused int
@@ -54,13 +54,13 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 
 	elf_check(header->e_ident);
 	printf("ELF Header:\n");
-	print_magic(header->e_ident);
-	print_class(header->e_ident);
-	print_data(header->e_ident);
-	print_version(header->e_ident);
-	print_osabi(header->e_ident);
-	print_abi(header->e_ident);
-	print_type(header->e_type, header->e_ident);
+	display_magic(header->e_ident);
+	display_class(header->e_ident);
+	display_data(header->e_ident);
+	display_version(header->e_ident);
+	display_osabi(header->e_ident);
+	display_abi(header->e_ident);
+	display_type(header->e_type, header->e_ident);
 	entry_point_address(header->e_entry, header->e_ident);
 
 	free(header);
@@ -89,11 +89,10 @@ void elf_check(unsigned char *e_ident)
 }
 
 /**
- * print_magic - Prints the magic numbers of an ELF header.
+ * display_magic - Displays the magic numbers of an ELF header.
  * @e_ident : elf identification
- * Description: Magic numbers are separated by spaces.
  */
-void print_magic(unsigned char *e_ident)
+void display_magic(unsigned char *e_ident)
 {
 	int index;
 
@@ -111,10 +110,10 @@ void print_magic(unsigned char *e_ident)
 }
 
 /**
- * print_class - Prints the class of an ELF header.
+ * display_class - Displays the class of an ELF header.
  * @e_ident: elf identification
  */
-void print_class(unsigned char *e_ident)
+void display_class(unsigned char *e_ident)
 {
 	printf("  Class:                             ");
 
@@ -135,10 +134,10 @@ void print_class(unsigned char *e_ident)
 }
 
 /**
- * print_data - Prints the data of an ELF header.
+ * display_data - displays the data of an ELF header.
  * @e_ident: elf identification
  */
-void print_data(unsigned char *e_ident)
+void display_data(unsigned char *e_ident)
 {
 	printf("  Data:                              ");
 
@@ -159,10 +158,10 @@ void print_data(unsigned char *e_ident)
 }
 
 /**
- * print_version - Prints the version of an ELF header.
+ * display_version - displays the version of an ELF header.
  * @e_ident: elf identification
  */
-void print_version(unsigned char *e_ident)
+void display_version(unsigned char *e_ident)
 {
 	printf("  Version:                           %d",
 	       e_ident[EI_VERSION]);
@@ -179,10 +178,10 @@ void print_version(unsigned char *e_ident)
 }
 
 /**
- * print_osabi - Prints the OS/ABI of an ELF header.
+ * display_osabi - displays the OS/ABI of an ELF header.
  * @e_ident: elf identification
  */
-void print_osabi(unsigned char *e_ident)
+void display_osabi(unsigned char *e_ident)
 {
 	printf("  OS/ABI:                            ");
 
@@ -224,21 +223,21 @@ void print_osabi(unsigned char *e_ident)
 }
 
 /**
- * print_abi - Prints the ABI version of an ELF header.
+ * display_abi - displays the ABI version of an ELF header.
  * @e_ident: elf identification
  */
-void print_abi(unsigned char *e_ident)
+void display_abi(unsigned char *e_ident)
 {
 	printf("  ABI Version:                       %d\n",
 	       e_ident[EI_ABIVERSION]);
 }
 
 /**
- * print_type - Prints the type of an ELF header.
+ * display_type - displays the type of an ELF header.
  * @e_type: The ELF type.
  * @e_ident: elf identification
  */
-void print_type(unsigned int e_type, unsigned char *e_ident)
+void display_type(unsigned int e_type, unsigned char *e_ident)
 {
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
 		e_type >>= 8;
@@ -268,7 +267,7 @@ void print_type(unsigned int e_type, unsigned char *e_ident)
 }
 
 /**
- * entry_point_address - Prints the entry point of an ELF header.
+ * entry_point_address - displays the entry point of an ELF header.
  * @e_entry: ELF entry point.
  * @e_ident: elf identification.
  */
