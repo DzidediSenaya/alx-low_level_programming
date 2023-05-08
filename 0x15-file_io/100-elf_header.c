@@ -298,7 +298,7 @@ void exit_elf(int fd)
 	if (close(fd) == -1)
 	{
 		dprintf(STDERR_FILENO,
-			"Error: Can't close fd %d\n", elf);
+			"Error: Can't close fd %d\n", fd);
 		exit(98);
 	}
 }
