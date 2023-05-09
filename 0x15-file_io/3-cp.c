@@ -1,16 +1,14 @@
 #include "main.h"
 #define BUFFER_SIZE 1024
 
-int open_file_read(char *filename);
-int open_file_write(char *filename, mode_t mode);
+int open_files(char *src_file, char *dest_file);
 void copy_file_content(int fd_from, int fd_to, char *buffer, char *filename);
-void close_file(int fd);
 
 /**
  * main - copies the content of a file to another file
- * @argc: number of command line arguments
- * @argv: array of command line arguments
- * Return: 0 on success, otherwise an error code
+ *  @argc: array of pointers to args
+ *  @argv: number of args
+ *  Return: 0 if success
  */
 int main(int argc, char *argv[])
 {
@@ -23,51 +21,41 @@ dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 exit(97);
 }
 
-fd_from = open_file_read(argv[1]);
-fd_to = open_file_write(argv[2], 0664);
-
+fd_from = open_files(argv[1], argv[2]);
+fd_to = open_files(argv[2], NULL);
 copy_file_content(fd_from, fd_to, buffer, argv[2]);
 
-close_file(fd_from);
-close_file(fd_to);
+close(fd_from);
+close(fd_to);
 
 return (0);
 }
 
 /**
- * open_file_read - opens a file for reading
- * @filename: the name of the file to open
+ * open_files - opens the source and/or destination files
+ * @src_file: the name of the source file
+ * @dest_file: the name of the destination file, NULL if not applicable
  * Return: the file descriptor of the opened file
  */
-int open_file_read(char *filename)
+int open_files(char *src_file, char *dest_file)
 {
 int fd;
 
-fd = open(filename, O_RDONLY);
+fd = open(src_file, O_RDONLY);
 if (fd == -1)
 {
-dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", filename);
+dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", src_file);
 exit(98);
 }
 
-return (fd);
-}
-
-/**
- * open_file_write - opens a file for writing
- * @filename: the name of the file to open
- * @mode: the file permission mode
- * Return: the file descriptor of the opened file
- */
-int open_file_write(char *filename, mode_t mode)
+if (dest_file != NULL)
 {
-int fd;
-
-fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, mode);
+fd = open(dest_file, O_CREAT | O_WRONLY | O_TRUNC, 0664);
 if (fd == -1)
 {
-dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename);
+dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dest_file);
 exit(99);
+}
 }
 
 return (fd);
@@ -100,18 +88,3 @@ dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", filename);
 exit(98);
 }
 }
-
-/**
- * close_file - closes a file
- * @fd: the file descriptor of the file to be closed
- * Return: void
- */
-void close_file(int fd)
-{
-if (close(fd) == -1)
-{
-dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
-exit(100);
-}
-}
-
