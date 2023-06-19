@@ -1,0 +1,80 @@
+0-binary_to_uint.c
+0-main.c
+0-read_textfile.c
+0x14-bit_manipulation/.100-get_endianness.c.swp
+0x14-bit_manipulation/0-main.c
+0x14-bit_manipulation/1-main.c
+0x14-bit_manipulation/100-main.c
+0x14-bit_manipulation/2-main.c
+0x14-bit_manipulation/3-main.c
+0x14-bit_manipulation/4-main.c
+0x14-bit_manipulation/5-main.c
+0x14-bit_manipulation/_putchar.c
+0x14-bit_manipulation/a
+0x14-bit_manipulation/b
+0x14-bit_manipulation/c
+0x14-bit_manipulation/d
+0x14-bit_manipulation/e
+0x14-bit_manipulation/f
+0x14-bit_manipulation/h
+0x15-file_io/.100-elf_header.c.swp
+0x15-file_io/0-main.c
+0x15-file_io/1-main.c
+0x15-file_io/2-main.c
+0x15-file_io/:          52 (bytes into file)
+0x15-file_io/:          64 (bytes into file)
+0x15-file_io/X86-64
+0x15-file_io/a
+0x15-file_io/b
+0x15-file_io/c
+0x15-file_io/cp
+0x15-file_io/elf_header
+0x15-file_io/for Ubuntu) 2.26.1
+0x15-file_io/hello
+0x15-file_io/ion:                           1 (current)
+0x15-file_io/program is free software
+0x15-file_io/s: ELF32
+0x15-file_io/s: ELF64
+0x18-dynamic_libraries/100-operations.c
+0x18-dynamic_libraries/abs.c
+0x18-dynamic_libraries/abs.o
+0x18-dynamic_libraries/atoi.c
+0x18-dynamic_libraries/atoi.o
+0x18-dynamic_libraries/gitignore_untracked.sh
+0x18-dynamic_libraries/gm
+0x18-dynamic_libraries/isalpha.c
+0x18-dynamic_libraries/isalpha.o
+0x18-dynamic_libraries/isdigit.c
+0x18-dynamic_libraries/isdigit.o
+0x18-dynamic_libraries/islower.c
+0x18-dynamic_libraries/islower.o
+0x18-dynamic_libraries/isupper.c
+0x18-dynamic_libraries/isupper.o
+0x18-dynamic_libraries/memcpy.c
+0x18-dynamic_libraries/memcpy.o
+0x18-dynamic_libraries/memset.c
+0x18-dynamic_libraries/memset.o
+0x18-dynamic_libraries/putchar.c
+0x18-dynamic_libraries/putchar.o
+0x18-dynamic_libraries/puts.c
+0x18-dynamic_libraries/puts.o
+0x18-dynamic_libraries/strcat.c
+0x18-dynamic_libraries/strcat.o
+0x18-dynamic_libraries/strchr.c
+0x18-dynamic_libraries/strchr.o
+0x18-dynamic_libraries/strcmp.c
+0x18-dynamic_libraries/strcmp.o
+0x18-dynamic_libraries/strcpy.c
+0x18-dynamic_libraries/strcpy.o
+0x18-dynamic_libraries/strlen.c
+0x18-dynamic_libraries/strlen.o
+0x18-dynamic_libraries/strncat.c
+0x18-dynamic_libraries/strncat.o
+0x18-dynamic_libraries/strncpy.c
+0x18-dynamic_libraries/strncpy.o
+0x18-dynamic_libraries/strpbrk.c
+0x18-dynamic_libraries/strpbrk.o
+0x18-dynamic_libraries/strspn.c
+0x18-dynamic_libraries/strspn.o
+0x18-dynamic_libraries/strstr.c
+0x18-dynamic_libraries/strstr.o
