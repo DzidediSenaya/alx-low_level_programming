@@ -1,48 +1,31 @@
-# Compiler
+# Compiler and compiler flags
 CC = gcc
-
-# Source files
-SRC = main.c school.c
-
-# Object files
-OBJ = $(SRC:.c=.o)
-
-# Name of the executable to be generated
-NAME = school
-
-# Compiler flags
 CFLAGS = -Wall -Werror -Wextra -pedantic
 
-# Command to remove files
-RM = rm -f
+# Source files and corresponding object files
+SRC = main.c school.c
+OBJ = $(SRC:.c=.o)
 
-# .PHONY targets to specify non-file targets
+# Executable name
+NAME = school
+
+# Phony targets to avoid conflicts with file names
 .PHONY: all clean oclean fclean re
 
-# Default target: Build the executable
-all: $(NAME)
+# Default target: build the executable
+all: m.h $(OBJ)  # Build the target "all" which depends on "m.h" and object files
+	$(CC) $(OBJ) -o $(NAME)  # Compile and link object files to create the executable
 
-# Rule to build the executable
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $(OBJ)
-
-# Target to clean temporary files and the executable
+# Clean up temporary files
 clean:
-	$(RM) *~ $(NAME) $(OBJ)
+	$(RM) *~ $(NAME)  # Remove backup files and the executable
 
-# Target to clean object files
+# Clean up object files
 oclean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJ)  # Remove object files
 
-# Target to clean all files
-fclean: clean oclean
+# Clean up everything
+fclean: clean oclean  # Call "clean" and "oclean" to remove backups, executable, and object files
 
-# Target to force recompilation of all source files
-re: fclean all
-
-# Rule to compile source files to object files
-%.o: %.c m.h
-	$(CC) $(CFLAGS) -c -o $@ $<
-
-# Ensure m.h exists before compilation
-$(OBJ): m.h
+# Rebuild everything
+re: fclean all  # Clean everything and then build the project again
