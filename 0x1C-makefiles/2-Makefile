@@ -1,25 +1,15 @@
 # Compiler
-CC := gcc
+CC = gcc
 
 # Source files
-SRC := main.c school.c
+SRC = main.c school.c
 
 # Object files
-OBJ := $(SRC:.c=.o)
+OBJ = $(SRC:.c=.o)
 
-# Output executable name
-NAME := school
+# Name of the executable to be generated
+NAME = school
 
-# Rule to build the executable
-all: $(NAME)
-
-$(NAME): $(OBJ)
+# Default target: Build the executable
+all: $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
-
-# Rule to compile .c files into .o files
-%.o: %.c
-	$(CC) -c $< -o $@
-
-# Clean rule to remove object files and the executable
-clean:
-	rm -f $(OBJ) $(NAME)

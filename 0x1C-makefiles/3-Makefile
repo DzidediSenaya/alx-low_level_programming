@@ -1,22 +1,32 @@
-CC := gcc
-SRC := main.c school.c
-OBJ := $(SRC:.c=.o)
-NAME := school
-RM := rm -f
+# Compiler
+CC = gcc
 
-all: $(NAME)
-$(NAME): $(OBJ)
+# Source files
+SRC = main.c school.c
+
+# Object files
+OBJ = $(SRC:.c=.o)
+
+# Name of the executable to be generated
+NAME = school
+
+# Command to remove files
+RM = rm -f
+
+# Default target: Build the executable
+all: $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
-%.o: %.c
-	$(CC) -c $< -o $@
-
+# clean temporary files
 clean:
 	$(RM) *~ $(NAME)
 
+# clean object files
 oclean:
 	$(RM) $(OBJ)
 
+# clean all files
 fclean: clean oclean
 
+# clean and rebuild the project
 re: fclean all
