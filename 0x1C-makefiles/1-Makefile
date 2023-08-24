@@ -17,3 +17,35 @@ $(TARGET): $(SRC)
 # Clean rule to remove the executable
 clean:
 	rm -f $(TARGET)
+
+# Additional requirements
+CC := gcc
+SRC := main.c school.c
+TARGET := school
+
+# Rule to build the executable
+all: $(TARGET)
+
+$(TARGET): $(SRC)
+	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
+
+# Clean rule to remove the executable
+clean:
+	rm -f $(TARGET)
+
+# Variables: CC, SRC
+CC := gcc
+SRC := main.c school.c
+
+# Output executable name
+TARGET := school
+
+# Rule to build the executable
+all: $(TARGET)
+
+$(TARGET): $(SRC)
+	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
+
+# Clean rule to remove the executable
+clean:
+	rm -f $(TARGET)
