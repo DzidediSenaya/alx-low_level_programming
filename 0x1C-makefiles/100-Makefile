@@ -1,23 +1,38 @@
+# Compiler
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -pedantic
 
+# Source files
 SRC = main.c school.c
+
+# Object files
 OBJ = $(SRC:.c=.o)
+
+# Name of the executable to be generated
 NAME = school
 
+# Command to remove files
+RM = rm -f
+
+# Compiler flags
+CFLAGS = -Wall -Werror -Wextra -pedantic
+
+# .PHONY targets to specify non-file targets
 .PHONY: all clean oclean fclean re
 
-all: $(NAME)
-
-$(NAME): $(OBJ)
+# Default target: Build the executable
+all: m.h $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
+# Target to clean temporary files
 clean:
-	rm -f *~ $(OBJ) $(NAME)
+	$(RM) *~ $(NAME)
 
+# Target to clean object files
 oclean:
-	rm -f $(OBJ)
+	$(RM) $(OBJ)
 
+# Target to clean all files
 fclean: clean oclean
 
+# Target to clean and rebuild the project
 re: fclean all

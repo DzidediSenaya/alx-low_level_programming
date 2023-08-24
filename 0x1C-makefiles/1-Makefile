@@ -1,0 +1,9 @@
+# Compiler
+CC = gcc
+
+# Source files
+SRC = main.c school.c
+
+# Default target: Build the executable
+all: $(SRC)
+	$(CC) $(SRC) -o school
