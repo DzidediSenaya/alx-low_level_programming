@@ -10,22 +10,25 @@ OBJ = $(SRC:.c=.o)
 # Name of the executable to be generated
 NAME = school
 
-# Command to remove files
-RM = rm -f
-
 # Compiler flags
 CFLAGS = -Wall -Werror -Wextra -pedantic
+
+# Command to remove files
+RM = rm -f
 
 # .PHONY targets to specify non-file targets
 .PHONY: all clean oclean fclean re
 
 # Default target: Build the executable
-all: m.h $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
+all: $(NAME)
 
-# Target to clean temporary files
+# Rule to build the executable
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $(OBJ)
+
+# Target to clean temporary files and the executable
 clean:
-	$(RM) *~ $(NAME)
+	$(RM) *~ $(NAME) $(OBJ)
 
 # Target to clean object files
 oclean:
@@ -34,5 +37,12 @@ oclean:
 # Target to clean all files
 fclean: clean oclean
 
-# Target to clean and rebuild the project
+# Target to force recompilation of all source files
 re: fclean all
+
+# Rule to compile source files to object files
+%.o: %.c m.h
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+# Ensure m.h exists before compilation
+$(OBJ): m.h
