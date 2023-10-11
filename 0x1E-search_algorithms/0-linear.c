@@ -20,7 +20,7 @@ for (i = 0; i < size; i++)
 {
 printf("Value checked array[%lu] = [%d]\n", i, array[i]);
 if (array[i] == value)
-return (int)i;
+return (i);
 }
 
 return (-1);  /*Value not found*/
